@@ -1,4 +1,4 @@
-defmodule RecipeBot.Scrapers.AllRecipes do
+defmodule RecipeBot.Parsers.AllRecipes do
   import Logger
 
   def parse(url) do
@@ -11,9 +11,9 @@ defmodule RecipeBot.Scrapers.AllRecipes do
 
             data = %{
               tile: title(document),
-              prep: prep(document),
-              cook: cook(document),
-              total: total(document),
+              prep_minutes: prep_minutes(document),
+              cook_minutes: cook_minutes(document),
+              total_minutes: total_minutes(document),
               serving: serving(document),
               ingredients: ingredients(document),
               directions: directions(document),
@@ -40,7 +40,7 @@ defmodule RecipeBot.Scrapers.AllRecipes do
     |> String.trim
   end
 
-  defp prep(document) do
+  defp prep_minutes(document) do
     document
     |> Floki.find(".two-subcol-content-wrapper:first-child")
     |> Floki.find(".recipe-meta-item:first-child")
@@ -49,7 +49,7 @@ defmodule RecipeBot.Scrapers.AllRecipes do
     |> String.trim
   end
 
-  defp cook(document) do
+  defp cook_minutes(document) do
     document
     |> Floki.find(".two-subcol-content-wrapper:first-child")
     |> Floki.find(".recipe-meta-item:nth-of-type(2)")
@@ -58,7 +58,7 @@ defmodule RecipeBot.Scrapers.AllRecipes do
     |> String.trim
   end
 
-  defp total(document) do
+  defp total_minutes(document) do
     document
     |> Floki.find(".two-subcol-content-wrapper:first-child")
     |> Floki.find(".recipe-meta-item:nth-of-type(3)")
@@ -114,5 +114,5 @@ defmodule RecipeBot.Scrapers.AllRecipes do
   end
 end
 
-# RecipeBot.Scrapers.AllRecipes.parse("https://www.allrecipes.com/recipe/21528/pesto-pizza/")
-# RecipeBot.Scrapers.AllRecipes.parse("https://www.allrecipes.com/recipe/281347/frozen-zabaglione/")
+# RecipeBot.Parsers.AllRecipes.parse("https://www.allrecipes.com/recipe/21528/pesto-pizza/")
+# RecipeBot.Parsers.AllRecipes.parse("https://www.allrecipes.com/recipe/281347/frozen-zabaglione/")
