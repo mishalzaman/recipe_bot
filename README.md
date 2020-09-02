@@ -1,18 +1,72 @@
-# RecipeBot
+# RecipeBot API
 
-To start your Phoenix server:
+## Limitations
+- Max items per request is `50`
+- Provides cursor pagination I.e. `after_cursor`, `before_cursor` and `total_count`
 
-  * Setup the project with `mix setup`
-  * Start Phoenix endpoint with `mix phx.server`
+### Endpoints
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+> /parse
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Parses a recipe website
 
-## Learn more
+**parameters**
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+`url:string`
+
+---
+
+> /search
+
+Perform search queries
+
+**parameters**
+
+`title:string`
+`ingredients:string(comma seperated)`
+
+---
+
+### Database
+
+**Recipes**
+`id:uuid`
+`title:string`
+`url:string`
+`url_hash:string`
+`prep:string`
+`cook:string`
+`total:string`
+`serving:string`
+`directions:string`
+
+**Ingredients**
+`id:uuid`
+`name:string`
+
+**MeasurementUnits**
+`id:uuid`
+`name:string`
+
+**MeasurementAmount**
+`id:uuid`
+`amount:float`
+
+**RecipeIngredients**
+`id:uuid`
+`recipe_id:uuid`
+`ingredient_id:uuid`
+`measurement_amount_id:uuid`
+`measurement_unit_id:uuid`
+
+**NutritionValues**
+`id:uuid`
+`name:string`
+
+**RecipeNutritionValues**
+`id:uuid`
+`recipe_id:uuid`
+`nutrition_id:uuid`
+`measurement_amount_id:uuid`
+`measurement_unit_id:uuid`
+
