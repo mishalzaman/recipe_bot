@@ -47,6 +47,8 @@ defmodule RecipeBot.Parsers.AllRecipes do
     |> Floki.find(".recipe-meta-item-body")
     |> Floki.text
     |> String.trim
+    |> String.replace(~r/( mins)/, "")
+    |> String.to_integer
   end
 
   defp cook_minutes(document) do
@@ -56,6 +58,8 @@ defmodule RecipeBot.Parsers.AllRecipes do
     |> Floki.find(".recipe-meta-item-body")
     |> Floki.text
     |> String.trim
+    |> String.replace(~r/( mins)/, "")
+    |> String.to_integer
   end
 
   defp total_minutes(document) do
@@ -65,6 +69,8 @@ defmodule RecipeBot.Parsers.AllRecipes do
     |> Floki.find(".recipe-meta-item-body")
     |> Floki.text
     |> String.trim
+    |> String.replace(~r/( mins)/, "")
+    |> String.to_integer
   end
 
   defp serving(document) do
@@ -74,6 +80,7 @@ defmodule RecipeBot.Parsers.AllRecipes do
     |> Floki.find(".recipe-meta-item-body")
     |> Floki.text
     |> String.trim
+    |> String.to_integer
   end
 
   defp ingredients(document) do
