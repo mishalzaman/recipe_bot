@@ -40,33 +40,17 @@ Perform search queries
 `serving:string`
 `directions:string`
 
-**Ingredients**
-`id:uuid`
-`name:string`
-
-**MeasurementUnits**
-`id:uuid`
-`name:string`
-
-**MeasurementAmount**
-`id:uuid`
-`amount:float`
-
 **RecipeIngredients**
 `id:uuid`
 `recipe_id:uuid`
-`ingredient_id:uuid`
-`measurement_amount_id:uuid`
-`measurement_unit_id:uuid`
-
-**NutritionValues**
-`id:uuid`
 `name:string`
+`unit:string`
+`amount:float`
 
-**RecipeNutritionValues**
+**RecipeNutritions**
 `id:uuid`
 `recipe_id:uuid`
-`nutrition_id:uuid`
-`measurement_amount_id:uuid`
-`measurement_unit_id:uuid`
+`name:string`
+`unit:string`
+`amount:float`
 

@@ -16,6 +16,10 @@ defmodule RecipeBot.Schema.Recipe do
     timestamps(type: :utc_datetime)
   end
 
+  @spec create_changeset(
+          {map, map} | %{:__struct__ => atom | %{__changeset__: map}, optional(atom) => any},
+          :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}
+        ) :: Ecto.Changeset.t()
   def create_changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [
