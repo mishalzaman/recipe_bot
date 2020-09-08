@@ -2,12 +2,11 @@ defmodule RecipeBot.Schema.RecipeIngredient do
   use RecipeBot.Schema, :schema
   import Ecto.Changeset
 
-  schema "recipes" do
+  schema "recipe_ingredients" do
     field(:recipe_id, :binary_id)
     field(:name, :string)
     field(:unit, :string)
     field(:amount, :float)
-
 
     timestamps(type: :utc_datetime)
   end

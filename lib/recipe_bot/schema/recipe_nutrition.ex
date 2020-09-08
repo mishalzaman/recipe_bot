@@ -1,17 +1,14 @@
-defmodule RecipeBot.Schema.Recipe do
+defmodule RecipeBot.Schema.RecipeNutrition do
   use RecipeBot.Schema, :schema
   import Ecto.Changeset
 
-  schema "recipes" do
-    field(:title, :string)
-    field(:prep_minutes, :integer)
-    field(:cook_minutes, :integer)
-    field(:total_minutes, :integer)
-    field(:serving, :integer)
+  schema "recipe_nutrition" do
+    field(:recipe_id, :binary_id)
+    field(:name, :string)
+    field(:unit, :string)
+    field(:amount, :float)
 
     timestamps(type: :utc_datetime)
-
-    has_many :recipe_ingredients, RecipeBot.Schema.RecipeIngredient
   end
 
   @spec create_changeset(
@@ -21,12 +18,11 @@ defmodule RecipeBot.Schema.Recipe do
   def create_changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [
-      :title,
-      :prep_minutes,
-      :cook_minutes,
-      :total_minutes,
-      :serving
+      :recipe_id,
+      :name,
+      :unit,
+      :amount
     ])
-    |> validate_required([:title])
+    |> validate_required([:recipe_id, :name, :unit, :amount])
   end
 end

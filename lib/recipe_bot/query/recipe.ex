@@ -5,11 +5,14 @@ defmodule RecipeBot.Query.Recipe do
   alias RecipeBot.Schema.Recipe
 
   def all do
-    Repo.all(Recipe)
+    Recipe
+    |> preload(:recipe_ingredients)
+    |> Repo.all
   end
 
   def id(id) do
-    query = from(r in Recipe, where: r.id == ^id)
-    Repo.one(query)
+    from(r in Recipe, where: r.id == ^id)
+    |> preload(:recipe_ingredients)
+    |> Repo.one
   end
 end
