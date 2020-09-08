@@ -46,7 +46,9 @@ defmodule RecipeBot.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:httpoison, "~> 1.6"},
-      {:floki, "~> 0.28.0"}
+      {:floki, "~> 0.28.0"},
+      {:ex_machina, "~> 2.4", only: :test},
+      {:poison, "~> 3.1"}
     ]
   end
 
