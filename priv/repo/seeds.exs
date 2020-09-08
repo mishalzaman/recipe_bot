@@ -9,3 +9,12 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+
+RecipeBot.Repo.insert!(%RecipeBot.Schema.Recipe{
+  title: "Tasty Burger",
+  prep_minutes: 10,
+  cook_minutes: 20,
+  total_minutes: 30,
+  serving: 6
+})

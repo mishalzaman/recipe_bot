@@ -19,6 +19,12 @@ defmodule RecipeBotWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api/v1", RecipeBotWeb.API.V1 do
+    pipe_through :api
+
+    get("/recipes", Recipes, :index)
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", RecipeBotWeb do
   #   pipe_through :api

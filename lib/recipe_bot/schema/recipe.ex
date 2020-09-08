@@ -4,14 +4,10 @@ defmodule RecipeBot.Schema.Recipe do
 
   schema "recipes" do
     field(:title, :string)
-    field(:prep, :string)
-    field(:cook, :string)
-    field(:total, :string)
-    field(:serving, :string)
-    field(:ingredients, {:array, :string})
-    field(:directions, {:array, :string})
-    field(:nutrition_information, {:array, :string})
-    field(:module, :string)
+    field(:prep_minutes, :integer)
+    field(:cook_minutes, :integer)
+    field(:total_minutes, :integer)
+    field(:serving, :integer)
 
     timestamps(type: :utc_datetime)
   end
@@ -24,15 +20,12 @@ defmodule RecipeBot.Schema.Recipe do
     struct
     |> cast(params, [
       :title,
-      :prep,
-      :cook,
-      :total,
+      :prep_minutes,
+      :cook_minutes,
+      :total_minutes,
       :serving,
-      :ingredients,
-      :directions,
-      :nutrition_information,
       :module
     ])
-    |> validate_required([:title, :ingredients, :directions, :module])
+    |> validate_required([:title])
   end
 end
